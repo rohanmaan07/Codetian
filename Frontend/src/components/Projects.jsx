@@ -6,7 +6,7 @@ import ndArtsImage from "../assets/ND-Arts.png";
 import trendStreamImage from "../assets/TrendStream.png";
 import VideoProcoting from "../assets/VideoProctoring.png";
 import kitaabImage from "../assets/Kitaab.png";
-import hackathonImage from "../assets/Hackathonp.png";
+import hackathonImage from "../assets/HackathonP.png";
 import Ticket from "../assets/Ticket.png";
 
 const projectsData = [

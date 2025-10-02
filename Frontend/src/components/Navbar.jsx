@@ -1,0 +1,99 @@
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiMenu, FiX } from 'react-icons/fi';
+
+const navLinks = [
+  { title: "Home", href: "#home" },
+  { title: "Services", href: "#services" },
+  { title: "Projects", href: "#projects" },
+  { title: "Process", href: "#process" }, 
+  { title: "About", href: "#about" },
+  { title: "Contact", href: "#contact" },
+];
+
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const menuVariants = {
+    hidden: { x: '100%' },
+    visible: { x: 0, transition: { duration: 0.3, ease: 'easeInOut' } },
+  };
+
+  return (
+    <>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-gray-900/70 backdrop-blur-lg' : 'bg-transparent'}`}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            <a href="#" className="flex flex-col items-start">
+              <span className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
+                Codetian
+              </span>
+              <span className="text-xs text-gray-400 tracking-wider mt-0.5">
+                INNOVATION IN EVERY LINE
+              </span>
+            </a>
+            
+            <div className="hidden md:flex items-center space-x-8">
+              {navLinks.map((link) => (
+                <a key={link.title} href={link.href} className="text-gray-300 hover:text-white transition-colors duration-300">
+                  {link.title}
+                </a>
+              ))}
+            </div>
+            
+            <div className="md:hidden">
+              <button onClick={toggleMenu} className="text-white focus:outline-none">
+                <FiMenu size={28} />
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="fixed top-0 right-0 w-full h-full bg-gray-900 z-50 md:hidden"
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            variants={menuVariants}
+          >
+            <div className="flex justify-end p-6">
+              <button onClick={toggleMenu} className="text-white focus:outline-none">
+                <FiX size={28} />
+              </button>
+            </div>
+            <div className="flex flex-col items-center justify-center h-full -mt-20 space-y-8">
+              {navLinks.map((link) => (
+                <a 
+                  key={link.title} 
+                  href={link.href} 
+                  className="text-gray-300 hover:text-white text-3xl font-semibold"
+                  onClick={toggleMenu}
+                >
+                  {link.title}
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+};
+
+export default Navbar;

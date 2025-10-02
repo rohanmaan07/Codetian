@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import aboutPic from '../assets/AboutPic.jpg'; 
+import aboutPic from '../assets/AboutPIc.jpg'; 
 
 const skills = [
   "JavaScript", "React.js", "Node.js", "Express", 

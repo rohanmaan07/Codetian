@@ -22,7 +22,6 @@ const About = () => {
   return (
     <section id="about" className="bg-black text-white py-20 px-6">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        {/* Left Column: Two Images Side by Side */}
         <motion.div
           className="w-full max-w-md mx-auto flex gap-6 justify-center"
           initial={{ opacity: 0, x: -50 }}
@@ -30,8 +29,7 @@ const About = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {/* Image 1 */}
-          {/* Image 1 */}
+          
           <div className="aspect-square rounded-full bg-gradient-to-br from-red-600 via-red-400 to-pink-500 p-1 shadow-lg hover:shadow-red-500/60 transition-shadow duration-500 w-[200px] h-[200px] md:w-[280px] md:h-[280px]">
             <div className="w-full h-full bg-gray-900 rounded-full overflow-hidden">
               <img
@@ -41,8 +39,6 @@ const About = () => {
               />
             </div>
           </div>
-
-          {/* Image 2 */}
           <div className="aspect-square rounded-full bg-gradient-to-br from-purple-600 via-pink-400 to-blue-500 p-1 shadow-lg hover:shadow-purple-500/60 transition-shadow duration-500 w-[200px] h-[200px] md:w-[280px] md:h-[280px]">
             <div className="w-full h-full bg-gray-900 rounded-full overflow-hidden">
               <img
@@ -53,8 +49,6 @@ const About = () => {
             </div>
           </div>
         </motion.div>
-
-        {/* Right Column: Text Content */}
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}

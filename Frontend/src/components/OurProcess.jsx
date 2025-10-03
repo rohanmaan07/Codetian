@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaSearch, FaPaintBrush, FaCode, FaRocket } from 'react-icons/fa';
 
-// Array updated with different icon colors for a more vibrant look
+// Process Steps
 const processSteps = [
   {
     id: 1,
@@ -32,7 +32,7 @@ const processSteps = [
   },
 ];
 
-// Animation variants for the cards, same as your Services component
+// Animation variants
 const cardVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: (i) => ({
@@ -48,35 +48,37 @@ const cardVariants = {
 
 const OurProcess = () => {
   return (
-    <section id="process" className="bg-gray-900 text-white py-20 px-4">
+    <section id="process" className="bg-black text-white py-20 px-6">
       <div className="max-w-6xl mx-auto text-center">
-        {/* Animated Section Header */}
+        
+        {/* Section Heading */}
         <motion.h2 
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-4xl md:text-5xl font-extrabold mb-12"
+          className="text-4xl md:text-5xl font-extrabold mb-12 relative inline-block"
         >
           Our Working Process
+          <span className="block w-24 h-1 bg-red-600 mx-auto mt-3 rounded-full"></span>
         </motion.h2>
         
+        {/* Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {processSteps.map((step, index) => (
             <motion.div
               key={step.id}
-              // Applying the glassmorphism style and animations
-              className="bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-white/10 shadow-lg text-left"
+              className="bg-[#141414]  backdrop-blur-md p-8 rounded-xl border border-gray-700 shadow-lg text-left hover:shadow-red-500/40 hover:border-red-500/60 transition-all duration-300"
               custom={index}
               variants={cardVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              whileHover={{ y: -10, scale: 1.03 }}
-              transition={{ type: 'spring', stiffness: 300 }}
+              whileHover={{ y: -8, scale: 1.05 }}
+              transition={{ type: 'spring', stiffness: 250 }}
             >
               <div className="mb-4">{step.icon}</div>
-              <h3 className="text-2xl font-bold mb-3">{step.title}</h3>
+              <h3 className="text-2xl font-bold mb-3 text-red-500">{step.title}</h3>
               <p className="text-gray-300">{step.description}</p>
             </motion.div>
           ))}

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const servicesData = [
   {
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
       </svg>
     ),
@@ -13,7 +13,6 @@ const servicesData = [
   },
   {
     icon: (
-      // Icon for UI/UX Design (e.g., layers or palette)
       <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
       </svg>
@@ -32,7 +31,6 @@ const servicesData = [
   },
   {
     icon: (
-      // Icon for AI Solutions (e.g., sparkles or brain)
       <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
       </svg>
@@ -58,7 +56,7 @@ const cardVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: i * 0.2, 
+      delay: i * 0.2,
       duration: 0.6,
       ease: "easeOut"
     }
@@ -67,34 +65,35 @@ const cardVariants = {
 
 const Services = () => {
   return (
-    <section id="services" className="bg-gray-900 text-white py-20 px-4">
+    <section id="services" className="bg-black text-white py-20 px-6">
       <div className="max-w-6xl mx-auto text-center">
         <motion.h2 
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-4xl md:text-5xl font-extrabold mb-12"
+          className="text-4xl md:text-5xl font-extrabold mb-12 relative inline-block"
         >
           What We Offer
+          <span className="block w-24 h-1 bg-red-600 mx-auto mt-3 rounded-full"></span>
         </motion.h2>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {servicesData.map((service, index) => (
             <motion.div
               key={index}
-              className="bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-white/10 shadow-lg text-left"
+              className="bg-[#141414] backdrop-blur-md p-8 rounded-xl border border-gray-700 shadow-lg text-left hover:shadow-red-500/40 hover:border-red-500/60 transition-all duration-300"
               custom={index}
               variants={cardVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              whileHover={{ y: -10, scale: 1.03 }}
-              transition={{ type: 'spring', stiffness: 300 }}
+              whileHover={{ y: -8, scale: 1.05 }}
+              transition={{ type: 'spring', stiffness: 250 }}
             >
               <div className="mb-4">{service.icon}</div>
-              <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
-              <p className="text-gray-300">{service.description}</p>
+              <h3 className="text-2xl font-bold mb-3 text-red-500">{service.title}</h3>
+              <p className="text-gray">{service.description}</p>
             </motion.div>
           ))}
         </div>

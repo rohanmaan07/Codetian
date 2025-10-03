@@ -16,16 +16,12 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleMenu = () => setIsOpen(!isOpen);
 
   const menuVariants = {
     hidden: { x: '100%' },
@@ -34,9 +30,10 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-gray-900/70 backdrop-blur-lg' : 'bg-transparent'}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-black/80 backdrop-blur-lg' : 'bg-transparent'}`}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
+            {/* Logo */}
             <a href="#" className="flex flex-col items-start">
               <span className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
                 Codetian
@@ -46,14 +43,16 @@ const Navbar = () => {
               </span>
             </a>
             
+            {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
               {navLinks.map((link) => (
-                <a key={link.title} href={link.href} className="text-gray-300 hover:text-white transition-colors duration-300">
+                <a key={link.title} href={link.href} className="text-gray-300 hover:text-red-500 transition-colors duration-300 font-medium">
                   {link.title}
                 </a>
               ))}
             </div>
             
+            {/* Mobile Menu Toggle */}
             <div className="md:hidden">
               <button onClick={toggleMenu} className="text-white focus:outline-none">
                 <FiMenu size={28} />
@@ -63,10 +62,11 @@ const Navbar = () => {
         </div>
       </nav>
 
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed top-0 right-0 w-full h-full bg-gray-900 z-50 md:hidden"
+            className="fixed top-0 right-0 w-full h-full bg-black z-50 md:hidden flex flex-col"
             initial="hidden"
             animate="visible"
             exit="hidden"
@@ -77,12 +77,12 @@ const Navbar = () => {
                 <FiX size={28} />
               </button>
             </div>
-            <div className="flex flex-col items-center justify-center h-full -mt-20 space-y-8">
+            <div className="flex flex-col items-center justify-center flex-1 space-y-8">
               {navLinks.map((link) => (
                 <a 
                   key={link.title} 
                   href={link.href} 
-                  className="text-gray-300 hover:text-white text-3xl font-semibold"
+                  className="text-white text-3xl font-semibold hover:text-red-500 transition-colors"
                   onClick={toggleMenu}
                 >
                   {link.title}

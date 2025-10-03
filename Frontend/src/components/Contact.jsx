@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import toast from 'react-hot-toast'; // Toast import added
+import toast from 'react-hot-toast';
 
-// Replaced react-icons with inline SVGs to remove dependency and fix error.
+// Inline SVGs for icons
 const EnvelopeIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -21,7 +21,6 @@ const GithubIcon = () => (
   </svg>
 );
 
-
 const Contact = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -29,7 +28,6 @@ const Contact = () => {
 
   const handleSendMessage = (e) => {
     e.preventDefault(); 
-
     if (!name || !email || !message) {
       toast.error('Please fill out all fields.');
       return;
@@ -40,18 +38,13 @@ const Contact = () => {
       `Hello Codetian,\n\nI would like to discuss a project.\n\nName: ${name}\nEmail: ${email}\n\nMessage: ${message}`
     );
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
-    
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-    
     toast.success('Thank you! Redirecting to WhatsApp.');
-
-    setName('');
-    setEmail('');
-    setMessage('');
+    setName(''); setEmail(''); setMessage('');
   };
 
   return (
-    <section id="contact" className="bg-gray-900 text-white py-20 px-4">
+    <section id="contact" className="bg-black text-white py-20 px-6">
       <div className="max-w-6xl mx-auto text-center">
         
         <motion.h2 
@@ -59,38 +52,40 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-4xl md:text-5xl font-extrabold mb-12"
+          className="text-4xl md:text-5xl font-extrabold mb-12 relative inline-block"
         >
-          Get In <span className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">Touch</span>
+          Get In <span className="text-red-500">Touch</span>
+          <span className="block w-24 h-1 bg-red-600 rounded-full mt-2 mx-auto"></span>
+
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-12 items-start">
 
           {/* Left Side */}
           <motion.div 
-            className="text-left"
+            className="text-left space-y-6"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-             <h3 className="text-2xl font-bold mb-4">Let's Build Together</h3>
+            <h3 className="text-2xl font-bold mb-4 text-white">Let's Build Together</h3>
             <p className="text-gray-300 mb-6">
-              Have a project in mind or just want to say hi? Fill out the form and send us a message directly on WhatsApp. We're excited to hear about your ideas.
+              Have a project in mind or just want to say hi? Fill out the form and send us a message directly on WhatsApp. We're excited to hear your ideas.
             </p>
-            <div className="space-y-4">
-               <a href="mailto:contact@codetian.com" className="flex items-center gap-3 text-lg hover:text-purple-400 transition-colors">
-                <EnvelopeIcon />
-                rohanmandal2208@gmail.com
+
+            <a href="mailto:contact@codetian.com" className="flex items-center gap-3 text-lg hover:text-red-500 transition-colors">
+              <EnvelopeIcon />
+              rohanmandal2208@gmail.com
+            </a>
+
+            <div className="flex space-x-6 pt-4">
+              <a href="https://www.linkedin.com/in/rohanmandal07/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-500 transition-transform hover:scale-110">
+                <LinkedinIcon />
               </a>
-              <div className="flex space-x-6 pt-4">
-                <a href="https://www.linkedin.com/in/rohanmandal07/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-purple-400 transition-transform hover:scale-110">
-                  <LinkedinIcon />
-                </a>
-                <a href="https://github.com/rohanmaan07" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-purple-400 transition-transform hover:scale-110">
-                  <GithubIcon />
-                </a>
-              </div>
+              <a href="https://github.com/rohanmaan07" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-500 transition-transform hover:scale-110">
+                <GithubIcon />
+              </a>
             </div>
           </motion.div>
 
@@ -106,28 +101,32 @@ const Contact = () => {
             <input 
               type="text" 
               placeholder="Your Name" 
-              className="w-full p-4 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 transition-colors"
+              className="w-full p-4 rounded-xl bg-gray-800/60 border border-gray-700 shadow-md text-white placeholder-gray-400 focus:outline-none focus:border-red-500 transition-all duration-300"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
             <input 
               type="email" 
               placeholder="Your Email" 
-              className="w-full p-4 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 transition-colors"
+              className="w-full p-4 rounded-xl bg-gray-800/60 border border-gray-700 shadow-md text-white placeholder-gray-400 focus:outline-none focus:border-red-500 transition-all duration-300"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
             <textarea 
               placeholder="Your Message" 
               rows="5"
-              className="w-full p-4 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 transition-colors"
+              className="w-full p-4 rounded-xl bg-gray-800/60 border border-gray-700 shadow-md text-white placeholder-gray-400 focus:outline-none focus:border-red-500 transition-all duration-300"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             ></textarea>
             
             <button 
               type="submit"
-              className="w-full font-bold text-lg py-4 px-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg hover:scale-105 transition-transform transform"
+                         className=" w-full group text-base sm:text-lg font-semibold px-8 py-4 
+                       bg-red-600 hover:bg-red-700 
+                       text-white rounded-md transition-all duration-300 
+                       hover:shadow-[0_0_30px_rgba(239,68,68,0.7)]
+                       inline-flex items-center justify-center"
             >
               Send Message on WhatsApp
             </button>
@@ -139,4 +138,3 @@ const Contact = () => {
 };
 
 export default Contact;
-

@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const servicesData = [
   {
@@ -74,14 +74,32 @@ const cardVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: i * 0.2,
+      delay: i * 0.1,
       duration: 0.6,
       ease: "easeOut"
     }
-  })
+  }),
+  exit: { opacity: 0, y: -30, transition: { duration: 0.3 } }
 };
 
 const Services = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const INITIAL_VISIBLE_COUNT = windowWidth < 768 ? 2 : 3;
+
+  const toggleServices = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  const visibleServices = isExpanded ? servicesData : servicesData.slice(0, INITIAL_VISIBLE_COUNT);
+
   return (
     <section id="services" className="bg-black text-white py-20 px-6">
       <div className="max-w-6xl mx-auto text-center">
@@ -96,25 +114,42 @@ const Services = () => {
           <span className="block w-24 h-1 bg-red-600 mx-auto mt-3 rounded-full"></span>
         </motion.h2>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {servicesData.map((service, index) => (
-            <motion.div
-              key={index}
-              className="bg-[#141414] backdrop-blur-md p-8 rounded-xl border border-gray-700 shadow-lg text-left hover:shadow-red-500/40 hover:border-red-500/60 transition-all duration-300"
-              custom={index}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              whileHover={{ y: -8, scale: 1.05 }}
-              transition={{ type: 'spring', stiffness: 250 }}
+        <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <AnimatePresence>
+            {visibleServices.map((service, index) => (
+              <motion.div
+                layout
+                key={service.title}
+                className="bg-[#141414] backdrop-blur-md p-8 rounded-xl border border-gray-700 shadow-lg text-left hover:shadow-red-500/40 hover:border-red-500/60 transition-all duration-300"
+                custom={index}
+                variants={cardVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                viewport={{ once: true, amount: 0.5 }}
+                whileHover={{ y: -8, scale: 1.05 }}
+                transition={{ type: 'spring', stiffness: 250 }}
+              >
+                <div className="mb-4">{service.icon}</div>
+                <h3 className="text-2xl font-bold mb-3 text-red-500">{service.title}</h3>
+                <p className="text-gray-400">{service.description}</p>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+
+        {servicesData.length > INITIAL_VISIBLE_COUNT && (
+          <div className="mt-12 text-center">
+            <motion.button
+              onClick={toggleServices}
+              className="bg-red-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-red-700 transition-all duration-300 shadow-lg"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <div className="mb-4">{service.icon}</div>
-              <h3 className="text-2xl font-bold mb-3 text-red-500">{service.title}</h3>
-              <p className="text-gray">{service.description}</p>
-            </motion.div>
-          ))}
-        </div>
+              {isExpanded ? 'View Less' : 'View More'}
+            </motion.button>
+          </div>
+        )}
       </div>
     </section>
   );

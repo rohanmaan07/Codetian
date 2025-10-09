@@ -7,6 +7,7 @@ import trendStreamImage from "../assets/TrendStream.png";
 import VideoProcoting from "../assets/VideoProctoring.png";
 import kitaabImage from "../assets/Kitaab.png";
 import hackathonImage from "../assets/HackathonP.png";
+import janviImage from "../assets/Janvi.png";
 import Ticket from "../assets/Ticket.png";
 
 const projectsData = [
@@ -65,6 +66,15 @@ const projectsData = [
     tags: ["HTML", "CSS", "JavaScript", "GeoJSON"],
     liveLink: "https://hackathon-project-omega-two.vercel.app/",
   },
+ {
+  image: janviImage,
+  title: "Janvi Electronics",
+  description:
+    "A client-based web project designed for an electronics store, featuring a responsive multi-page layout built with HTML, CSS, and JavaScript to showcase products and enhance user experience.",
+  tags: ["HTML", "CSS", "JavaScript"],
+  liveLink: "https://janvi-electronics.vercel.app/",
+},
+
 ];
 
 const cardVariants = {

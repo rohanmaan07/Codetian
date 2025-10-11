@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
 
@@ -7,7 +7,7 @@ const navLinks = [
   { title: "Services", href: "#services" },
   { title: "Projects", href: "#projects" },
   { title: "Process", href: "#process" }, 
-   { title: "About", href: "#about" },
+  { title: "About", href: "#about" },
   { title: "FAQs", href: "#faq" }, 
   { title: "Contact", href: "#contact" },
 ];
@@ -15,11 +15,21 @@ const navLinks = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const scrollTimeout = useRef(null);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 10);
+    const handleScroll = () => {
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+      scrollTimeout.current = setTimeout(() => {
+        setScrolled(window.scrollY > 10);
+      }, 50); 
+    };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+    };
   }, []);
 
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -45,20 +55,30 @@ const Navbar = () => {
           
             <div className="hidden md:flex items-center space-x-8">
               {navLinks.map((link) => (
-                <a key={link.title} href={link.href} className="text-gray-300 hover:text-red-500 transition-colors duration-300 font-medium">
+                <a 
+                  key={link.title} 
+                  href={link.href} 
+                  className="text-gray-300 hover:text-red-500 transition-colors duration-300 font-medium"
+                >
                   {link.title}
                 </a>
               ))}
             </div>
         
             <div className="md:hidden">
-              <button onClick={toggleMenu} className="text-white focus:outline-none">
-                <FiMenu size={28} />
+              <button 
+                onClick={toggleMenu} 
+                className="text-white focus:outline-none"
+                aria-label={isOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isOpen}
+              >
+                <FiMenu size={28} aria-hidden="true" />
               </button>
             </div>
           </div>
         </div>
       </nav>
+
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -69,8 +89,12 @@ const Navbar = () => {
             variants={menuVariants}
           >
             <div className="flex justify-end p-6">
-              <button onClick={toggleMenu} className="text-white focus:outline-none">
-                <FiX size={28} />
+              <button 
+                onClick={toggleMenu} 
+                className="text-white focus:outline-none"
+                aria-label="Close menu"
+              >
+                <FiX size={28} aria-hidden="true" />
               </button>
             </div>
             <div className="flex flex-col items-center justify-center flex-1 space-y-8">

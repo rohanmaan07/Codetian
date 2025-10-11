@@ -1,13 +1,55 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-   <link rel="icon" href="./src/assets/icon.png" />
+    <link rel="icon" href="/src/assets/icon.png" type="image/png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Codetian</title>
+    <meta
+      name="description"
+      content="Codetian builds high-performance, responsive, and SEO-optimized websites..."
+    />
+    <meta name="keywords" content="web development, website design, ..." />
+    <meta property="og:title" content="Codetian - Custom Web Development..." />
+    <meta property="og:description" content="We design and develop modern..." />
+    <meta
+      property="og:image"
+      content="https://codetian.vercel.app/og-image.jpg"
+    />
+    <meta property="og:url" content="https://codetian.vercel.app/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Codetian Team" />
+    <link rel="canonical" href="https://codetian.vercel.app/" />
+    <!-- <link rel="preload" as="image" href="/src/assets/icon.png" /> -->
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      as="style"
+      onload="this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      />
+    </noscript>
+
+    <script type="application/ld+json" defer>
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Codetian",
+        "url": "https://codetian.vercel.app",
+        "logo": "https://codetian.vercel.app/src/assets/icon.png"
+      }
+    </script>
   </head>
+
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+
+    <script type="module" src="/src/main.jsx" defer></script>
   </body>
 </html>

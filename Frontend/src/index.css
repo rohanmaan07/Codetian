@@ -5,3 +5,9 @@ html {
 body, html {
   overflow-x: hidden;
 }
+
+html, body, #root {
+  background-color: black;
+  margin: 0;
+  padding: 0;
+}

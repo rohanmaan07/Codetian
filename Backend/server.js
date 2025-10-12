@@ -15,7 +15,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 const counterSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
-  count: { type: Number, default: 107 }// 107 isiliye kiya kyuki purane record mei itne views aa chuke the 
+  count: { type: Number, default: 0 },
 });
 
 const Counter = mongoose.model('Counter', counterSchema);

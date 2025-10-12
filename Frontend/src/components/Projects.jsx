@@ -25,7 +25,7 @@ const projectsData = [
     description:
       "A responsive e-commerce website with OAuth, Razorpay integration, and Cloudinary for optimized image management.",
     tags: ["MongoDB", "Express.js", "React.js", "Node.js", "Razorpay"],
-    liveLink: "https://nd-arts-2grq.onrender.com/",
+    liveLink: "https://ndarts.vercel.app/",
   },
   {
     image: VideoProcoting,

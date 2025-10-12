@@ -24,7 +24,7 @@ const projectsData = [
     image: Iconiq,
     title: "Iconiq Gifts",
     description:
-      "Designed and launched a sophisticated e-commerce platform for Iconiq Gifts using Wix Studio. The website is tailored specifically for the corporate gifting market, providing a seamless and elegant browsing experience for businesses.",
+      "Designed and launched a sophisticated e-commerce platform for Iconiq Gifts using Wix Studio. The website is tailored specifically for the corporate gifting market.",
     tags: ["Wix Studio", "E-commerce", "UI/UX Design", "CMS Management"],
     liveLink: "https://www.iconiqgifts.in/",
   },

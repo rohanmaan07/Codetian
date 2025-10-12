@@ -1,41 +1,47 @@
+require('dotenv').config();
 const express = require('express');
+const mongoose = require('mongoose');
 const cors = require('cors');
-const fs = require('fs');
-const path = require('path');
 
 const app = express();
-const PORT = 5001;
-const DB_FILE_PATH = path.join(__dirname, 'db.json');
+const PORT = process.env.PORT || 5001;
 
 app.use(cors());
-const readViewCount = () => {
-  try {
-    if (fs.existsSync(DB_FILE_PATH)) {
-      const data = fs.readFileSync(DB_FILE_PATH);
-      return JSON.parse(data).viewCount;
-    }
-    return 0; 
-  } catch (error) {
-    return 0;
-  }
-};
+app.use(express.json());
 
-const writeViewCount = (count) => {
-  fs.writeFileSync(DB_FILE_PATH, JSON.stringify({ viewCount: count }));
-};
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB connected successfully!"))
+  .catch(err => console.error("MongoDB connection error:", err));
 
-app.get('/api/views', (req, res) => {
-  const count = readViewCount();
-  res.json({ count: count });
+const counterSchema = new mongoose.Schema({
+  name: { type: String, required: true, unique: true },
+  count: { type: Number, default: 107 }// 107 isiliye kiya kyuki purane record mei itne views aa chuke the 
 });
 
-app.post('/api/views', (req, res) => {
-  let count = readViewCount();
-  count++;
-  writeViewCount(count);
-  res.json({ count: count });
+const Counter = mongoose.model('Counter', counterSchema);
+
+app.get('/api/views', async (req, res) => {
+  try {
+    const viewCounter = await Counter.findOne({ name: 'siteViews' });
+    res.json({ count: viewCounter ? viewCounter.count : 0 });
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching views" });
+  }
+});
+
+app.post('/api/views', async (req, res) => {
+  try {
+    const updatedCounter = await Counter.findOneAndUpdate(
+      { name: 'siteViews' },
+      { $inc: { count: 1 } },
+      { new: true, upsert: true }
+    );
+    res.json({ count: updatedCounter.count });
+  } catch (error) {
+    res.status(500).json({ message: "Error incrementing views" });
+  }
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Backend server is running on port ${PORT}`);
 });

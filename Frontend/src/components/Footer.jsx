@@ -1,8 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios"; 
 import { FiPhone, FiMail } from "react-icons/fi";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+
+  const [viewCount, setViewCount] = useState(0);
+
+  useEffect(() => {
+    const API_URL = "https://codetian.onrender.com/api/views";
+
+    const updateViewCount = async () => {
+      try {
+        const hasVisited = localStorage.getItem("hasVisitedCodetian");
+        let response;
+        if (!hasVisited) {
+          response = await axios.post(API_URL);
+          localStorage.setItem("hasVisitedCodetian", "true");
+        } else {
+          response = await axios.get(API_URL);
+        }
+        setViewCount(response.data.count);
+      } catch (error) {
+        console.error("Error with view count:", error);
+      }
+    };
+
+    updateViewCount();
+  }, []);
 
   const navLinks = [
     { title: "home", href: "#home" },
@@ -21,8 +46,10 @@ const Footer = () => {
               Codetian
             </h3>
             <p className="text-gray-200 max-w-xs mb-4">
-              Your vision, our code. We build stunningly beautiful websites that perform even better than they look.
-              <br/><br/>
+              Your vision, our code. We build stunningly beautiful websites that
+              perform even better than they look.
+              <br />
+              <br />
               Turning your great ideas into modern, beautiful, and
               high-performing websites.
             </p>
@@ -37,7 +64,7 @@ const Footer = () => {
                     <a
                       href={link.href}
                       className="capitalize text-gray-200 hover:text-red-500 transition-colors duration-300"
-                      aria-label={`Navigate to ${link.title}`}
+                      aria-label={`Maps to ${link.title}`}
                     >
                       {link.title}
                     </a>
@@ -57,10 +84,11 @@ const Footer = () => {
                     aria-label="Send email to rohanmandal2208@gmail.com"
                   >
                     <FiMail size={18} aria-hidden="true" />
-                    <span className="text-xs md:text-sm">rohanmandal2208@gmail.com</span>
+                    <span className="text-xs md:text-sm">
+                      rohanmandal2208@gmail.com
+                    </span>
                   </a>
                 </li>
-
                 <li>
                   <a
                     href="mailto:anjuy54652@gmail.com"
@@ -70,10 +98,11 @@ const Footer = () => {
                     aria-label="Send email to anjuy54652@gmail.com"
                   >
                     <FiMail size={18} aria-hidden="true" />
-                    <span className="text-xs md:text-sm">anjuy54652@gmail.com</span>
+                    <span className="text-xs md:text-sm">
+                      anjuy54652@gmail.com
+                    </span>
                   </a>
                 </li>
-
                 <li>
                   <a
                     href="tel:+919711657307"
@@ -84,7 +113,6 @@ const Footer = () => {
                     <span className="md:text-sm">+91 97116 57307</span>
                   </a>
                 </li>
-
                 <li>
                   <a
                     href="tel:+919650762113"
@@ -104,6 +132,16 @@ const Footer = () => {
           <p className="text-gray-300 text-sm">
             © {currentYear} Codetian. All Rights Reserved.
           </p>
+
+          {viewCount > 0 && (
+            <p className="text-gray-400 text-sm mt-2">
+              👁️{" "}
+              <span className="font-semibold">
+                {viewCount.toLocaleString()}
+              </span>{" "}
+              Site Views
+            </p>
+          )}
         </div>
       </div>
     </footer>

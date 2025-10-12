@@ -6,13 +6,7 @@ import { Loader } from "./components/Loader.jsx";
 const App = lazy(() => import("./App.jsx"));
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <Suspense
-      fallback={
-        <Loader/>
-      }
-    >
-      <App />
-    </Suspense>
-  </StrictMode>
+  <Suspense fallback={<Loader />}>
+    <App />
+  </Suspense>
 );

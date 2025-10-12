@@ -9,6 +9,7 @@ import kitaabImage from "../assets/Kitaab.png";
 import hackathonImage from "../assets/HackathonP.png";
 import janviImage from "../assets/Janvi.png";
 import Ticket from "../assets/Ticket.png";
+import Iconiq from "../assets/Iconiq.png"
 
 const projectsData = [
   {
@@ -20,6 +21,14 @@ const projectsData = [
     liveLink: "https://kitaabrohan.onrender.com/",
   },
   {
+    image: Iconiq,
+    title: "Iconiq Gifts",
+    description:
+      "Designed and launched a sophisticated e-commerce platform for Iconiq Gifts using Wix Studio. The website is tailored specifically for the corporate gifting market, providing a seamless and elegant browsing experience for businesses.",
+    tags: ["Wix Studio", "E-commerce", "UI/UX Design", "CMS Management"],
+    liveLink: "https://www.iconiqgifts.in/",
+  },
+  {
     image: ndArtsImage,
     title: "ND Arts",
     description:
@@ -27,6 +36,7 @@ const projectsData = [
     tags: ["MongoDB", "Express.js", "React.js", "Node.js", "Razorpay"],
     liveLink: "https://ndarts.vercel.app/",
   },
+ 
   {
     image: VideoProcoting,
     title: "AI Video Procotring",

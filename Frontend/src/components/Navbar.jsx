@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
+import icon from '../assets/icon.png';
 
 const navLinks = [
   { title: "Home", href: "#home" },
@@ -45,9 +46,8 @@ const Navbar = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <a href="#" className="flex flex-col items-start">
-              <span className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
-                Codetian
-              </span>
+              <img src={icon} alt="Codetian Logo" className="h-12 w-auto" />
+
               <span className="text-xs text-gray-400 tracking-wider mt-0.5">
                 INNOVATION IN EVERY LINE
               </span>

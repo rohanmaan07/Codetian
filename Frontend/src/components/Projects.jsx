@@ -10,6 +10,7 @@ import hackathonImage from "../assets/HackathonP.png";
 import janviImage from "../assets/Janvi.png";
 import Ticket from "../assets/Ticket.png";
 import Iconiq from "../assets/Iconiq.png";
+import EClamp from "../assets/EClamp.png";
 
 const projectsData = [
   {
@@ -28,6 +29,13 @@ const projectsData = [
     tags: ["Wix Studio", "E-commerce", "UI/UX Design", "CMS Management"],
     liveLink: "https://www.iconiqgifts.in/",
   },
+  {
+  image: EClamp, 
+  title: "EClamp Services",
+  description: "A responsive corporate website for EClamp Services, built with React. Features an interactive Leaflet map to showcase their project footprint across India.",
+  tags: ["React", "Leaflet.js", "Tailwind CSS", "Corporate Website"],
+  liveLink: "https://eclampservices.in/",
+},
   {
     image: ndArtsImage,
     title: "ND Arts",

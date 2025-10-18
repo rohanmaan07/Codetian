@@ -36,6 +36,14 @@ const projectsData = [
   tags: ["React", "Leaflet.js", "Tailwind CSS", "Corporate Website"],
   liveLink: "https://eclampservices.in/",
 },
+ {
+    image: janviImage,
+    title: "Janvi Electronics",
+    description:
+      "A client-based web project designed for an electronics store, featuring a responsive multi-page layout..",
+    tags: ["HTML", "CSS", "JavaScript"],
+    liveLink: "https://janvi-electronics.vercel.app/",
+  },
   {
     image: ndArtsImage,
     title: "ND Arts",
@@ -44,14 +52,7 @@ const projectsData = [
     tags: ["MongoDB", "Express.js", "React.js", "Node.js", "Razorpay"],
     liveLink: "https://ndarts.vercel.app/",
   },
-  {
-    image: janviImage,
-    title: "Janvi Electronics",
-    description:
-      "A client-based web project designed for an electronics store, featuring a responsive multi-page layout..",
-    tags: ["HTML", "CSS", "JavaScript"],
-    liveLink: "https://janvi-electronics.vercel.app/",
-  },
+ 
   {
     image: VideoProcoting,
     title: "AI Video Procotring",

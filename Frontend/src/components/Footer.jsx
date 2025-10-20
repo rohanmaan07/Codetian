@@ -77,29 +77,29 @@ const Footer = () => {
               <ul className="space-y-3">
                 <li>
                   <a
-                    href="mailto:rohanmandal2208@gmail.com"
+                    href="mailto:rohanmandal@codetian.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 text-gray-200 hover:text-red-500 transition-colors duration-300"
-                    aria-label="Send email to rohanmandal2208@gmail.com"
+                    aria-label="Send email to rohanmandal@codetian.com"
                   >
                     <FiMail size={18} aria-hidden="true" />
                     <span className="text-xs md:text-sm">
-                      rohanmandal2208@gmail.com
+                      rohanmandal@codetian.com
                     </span>
                   </a>
                 </li>
                 <li>
                   <a
-                    href="mailto:anjuy54652@gmail.com"
+                    href="mailto:yashyadav@codetian.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 text-gray-200 hover:text-red-500 transition-colors duration-300"
-                    aria-label="Send email to anjuy54652@gmail.com"
+                    aria-label="Send email to yashyadav@codetian.com"
                   >
                     <FiMail size={18} aria-hidden="true" />
                     <span className="text-xs md:text-sm">
-                      anjuy54652@gmail.com
+                      yashyadav@codetian.com
                     </span>
                   </a>
                 </li>

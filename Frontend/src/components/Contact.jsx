@@ -99,13 +99,11 @@ const Contact = () => {
             </p>
 
             <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=rohanmandal2208@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="mailto:contact@codetian.com"
               className="flex items-center gap-3 text-lg hover:text-red-500 transition-colors"
             >
               <EnvelopeIcon />
-              rohanmandal2208@gmail.com
+              contact@codetian.com
             </a>
 
             <div className="flex space-x-6 pt-4">
